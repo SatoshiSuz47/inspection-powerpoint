@@ -1,11 +1,10 @@
 import { Button } from "@mui/material";
-import { useFullscreen, useToggle } from "react-use";
+import { useFullscreen, useKey, useToggle } from "react-use";
 import { useRef } from "react";
 
 import { slideDataType } from "~/types/type";
 import Slide from "../Slide";
 import { usePageCounter } from "../../../hooks/usePageCounter";
-import { useKeyDown } from "../../../hooks/useKeyDown";
 
 //データ定義
 
@@ -30,7 +29,8 @@ export default function SlideProvider() {
   useFullscreen(ref, show, {
     onClose: () => toggle(false),
   });
-  useKeyDown("ArrowLeft", () => decrement());
+  useKey("ArrowLeft", () => decrement());
+  useKey("ArrowRight", () => increment());
   return (
     <>
       <div ref={ref} style={{ backgroundColor: "white" }}>
